@@ -1,1 +1,88 @@
-test
+# .pages.yml — Pages CMS 配置（Jekyll/GitHub Pages 专用）
+
+# 1. 媒体（图片/文件）上传设置
+media:
+  input: assets/images       # 后台上传图片会存到这里
+  output: /assets/images     # 网页访问路径（对应上面）
+  threshold: 2               # 自动生成缩略图（可选）
+
+# 2. 内容类型（文章、页面、分类等）
+content:
+
+  # 博客文章（Jekyll _posts 格式）
+  - name: posts
+    label: 博客文章
+    type: collection
+    path: _posts             # Jekyll 固定文章目录
+    filename: "{fields.date}-{fields.title}.md"  # 自动命名
+    format: frontmatter     # 支持 YAML 头 + Markdown
+    fields:
+      - name: layout
+        label: Layout
+        type: string
+        hidden: true
+        default: post       # 大多数 Jekyll 主题用 post 布局
+
+      - name: title
+        label: 文章标题
+        type: string
+        required: true
+
+      - name: date
+        label: 发布日期
+        type: date
+        required: true
+        options:
+          format: YYYY-MM-DD
+
+      - name: categories
+        label: 分类
+        type: string
+        list: true          # 支持多个分类
+
+      - name: tags
+        label: 标签
+        type: string
+        list: true          # 支持多个标签
+
+      - name: cover
+        label: 封面图
+        type: image         # 后台可直接上传图片
+
+      - name: excerpt
+        label: 摘要
+        type: text
+        options:
+          rows: 3
+
+      - name: body
+        label: 正文内容
+        type: rich-text     # 富文本编辑器（支持 Markdown）
+        required: true
+
+    # 后台文章列表显示哪些列
+    view:
+      fields: [title, date, categories, tags]
+      sort: [date desc]     # 按日期倒序
+
+  # 单页（可选：关于、友链等）
+  - name: pages
+    label: 单页（关于/友链）
+    type: collection
+    path: .                 # 根目录的 .md 文件
+    format: frontmatter
+    fields:
+      - name: layout
+        label: Layout
+        type: string
+        hidden: true
+        default: page
+
+      - name: title
+        label: 页面标题
+        type: string
+        required: true
+
+      - name: body
+        label: 内容
+        type: rich-text
