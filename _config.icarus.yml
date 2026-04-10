@@ -106,7 +106,7 @@ navbar:
     # Navigation menu items
     menu:
         首页: /
-        博客: /blog
+        博客: /categories/blog/
         文章: /posts
         阅读: /reading
         分类: /categories
@@ -332,7 +332,7 @@ plugins:
     # http://outdatedbrowser.com/
     outdated_browser: false
     # Enable PJAX
-    pjax: true
+    pjax: false
     # Show a progress bar at top of the page on page loading
     progressbar: true
     # Statcounter statistics
