@@ -2,7 +2,6 @@ node_modules/
 public/
 .deploy_git/
 db.json
-package-lock.json
 pnpm-lock.yaml
 yarn.lock
 .DS_Store
